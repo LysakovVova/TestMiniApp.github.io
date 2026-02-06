@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Telegram Mini App</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body { font-family: sans-serif; padding: 16px; }
+    button { padding: 12px 16px; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Mini App работает</h1>
+  <div id="info"></div>
+  <button id="btn">Показать пользователя</button>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    document.getElementById("btn").onclick = () => {
+      const user = tg.initDataUnsafe?.user;
+      document.getElementById("info").innerText =
+        user ? `user_id=${user.id}, username=${user.username || ""}` : "Нет user (открыто не из Telegram?)";
+    };
+  </script>
+</body>
+</html>
